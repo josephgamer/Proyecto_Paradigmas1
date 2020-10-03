@@ -37,4 +37,16 @@ public class Servicio {
         return expresiones;
     }
     
+    public void addExpression(Expresiones expresion) {
+        this.expresiones.add(expresion);
+    }
+    
+    public void updateExpression(int position, Expresiones expression) {
+        this.expresiones.set(position, expression);
+    }
+    
+    public void deleteEsxpression(int position) {
+        this.expresiones.remove(position);
+    }
+    
 }
