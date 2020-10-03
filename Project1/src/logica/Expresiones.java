@@ -10,5 +10,27 @@ package logica;
  * @author Esteban
  */
 public class Expresiones {
+    private String expresion;
+
+    public Expresiones(String expresion) {
+        this.expresion = expresion;
+    }
+
+    public Expresiones() {
+    }
+
+    public String getExpresion() {
+        return expresion;
+    }
+
+    public void setExpresion(String expresion) {
+        this.expresion = expresion;
+    }
+
+    @Override
+    public String toString() {
+        return "Expresiones{" + "expresion=" + expresion + '}';
+    }
+    
     
 }
