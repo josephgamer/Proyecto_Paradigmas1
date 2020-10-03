@@ -24,7 +24,7 @@ public class Servicio {
         this.expresiones = new ArrayList<>();
     }
     
-    List<Expresiones> cargarDesdeArchivo() throws FileNotFoundException, IOException {
+    public List<Expresiones> cargarDesdeArchivo() throws FileNotFoundException, IOException {
         FileReader file = new FileReader("C:/Users/Esteban/Desktop/General/paradigmas/Proyecto1/prueba.txt");
         BufferedReader buffered = new BufferedReader(file);
         String cadena = "";
