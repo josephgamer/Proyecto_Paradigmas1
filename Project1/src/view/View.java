@@ -5,11 +5,36 @@
  */
 package view;
 
+import controller.Controller;
+import java.util.Observable;
+import java.util.Observer;
+import logica.Model;
+
 /**
  *
  * @author Esteban
  */
-public class View extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements Observer{
+    
+    Model model;
+    Controller controller;
+
+    public Model getModel() {
+        return model;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+        model.addOserver(this);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 
     /**
      * Creates new form View
@@ -131,4 +156,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object o1) {
+        
+    }
 }
