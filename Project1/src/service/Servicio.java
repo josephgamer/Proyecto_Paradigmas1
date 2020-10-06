@@ -49,4 +49,11 @@ public class Servicio {
         this.expresiones.remove(position);
     }
     
+    static Servicio the_instance;
+    public static Servicio instance(){
+        if(the_instance == null){
+            the_instance=new Servicio();
+        }
+        return the_instance;
+    }
 }
