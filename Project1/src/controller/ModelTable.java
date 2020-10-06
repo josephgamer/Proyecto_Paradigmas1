@@ -47,7 +47,7 @@ public class ModelTable extends Observable{
         this.filter = filter;
     }
     
-    public void setTableExpresiones(ArrayList<Expresiones> expresiones) {
+    public void setTableExpresiones(List<Expresiones> expresiones) {
         this.table = new TableModelArchivo(cols, expresiones);
         setChanged();
         notifyObservers();
