@@ -6,6 +6,7 @@
 package view;
 
 import controller.Controller;
+import controller.ModelTable;
 import java.util.Observable;
 import java.util.Observer;
 import logica.Model;
@@ -16,10 +17,10 @@ import logica.Model;
  */
 public class View extends javax.swing.JFrame implements Observer{
     
-    Model model;
+    ModelTable model;
     Controller controller;
 
-    public Model getModel() {
+    public ModelTable getModel() {
         return model;
     }
 
@@ -27,7 +28,7 @@ public class View extends javax.swing.JFrame implements Observer{
         return controller;
     }
 
-    public void setModel(Model model) {
+    public void setModelTable(ModelTable model) {
         this.model = model;
         model.addOserver(this);
     }
