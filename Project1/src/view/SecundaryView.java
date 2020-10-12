@@ -5,17 +5,22 @@
  */
 package view;
 
+import logica.DibujarTabla;
+
 /**
  *
  * @author Esteban
  */
 public class SecundaryView extends javax.swing.JFrame {
+    DibujarTabla d = new DibujarTabla();
 
     /**
      * Creates new form SecundaryView
      */
     public SecundaryView() {
         initComponents();
+        this.jtPositivo.setEditable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -33,6 +38,10 @@ public class SecundaryView extends javax.swing.JFrame {
         btnEvaluar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtPositivo = new javax.swing.JTextArea();
+        jlDescription1 = new javax.swing.JLabel();
+        jlvariablespositivas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +52,11 @@ public class SecundaryView extends javax.swing.JFrame {
         jlexpresion.setText("Expresion");
 
         btnEvaluar.setText("Evaluar");
+        btnEvaluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvaluarActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
@@ -56,7 +70,7 @@ public class SecundaryView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jlexpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jfexpresion, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jfexpresion, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEvaluar)
                 .addGap(18, 18, 18)
@@ -78,21 +92,50 @@ public class SecundaryView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        jtPositivo.setColumns(20);
+        jtPositivo.setRows(5);
+        jScrollPane1.setViewportView(jtPositivo);
+
+        jlDescription1.setText("Varables Positivas");
+
+        jlvariablespositivas.setText("hola");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlvariablespositivas, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addComponent(jlDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlDescription1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlvariablespositivas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
+        this.jtPositivo.append(d.devuelveVariablesPositivas());
+    }//GEN-LAST:event_btnEvaluarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,7 +177,11 @@ public class SecundaryView extends javax.swing.JFrame {
     private javax.swing.JButton btnEvaluar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jfexpresion;
+    private javax.swing.JLabel jlDescription1;
     private javax.swing.JLabel jlexpresion;
+    private javax.swing.JLabel jlvariablespositivas;
+    private javax.swing.JTextArea jtPositivo;
     // End of variables declaration//GEN-END:variables
 }
