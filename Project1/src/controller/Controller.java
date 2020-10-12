@@ -6,8 +6,10 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logica.Expresiones;
 import logica.Model;
 import view.View;
 
@@ -28,8 +30,9 @@ public class Controller {
     
     public void cargarDatos() {
         try {
-            model.setExpresiones(service.Servicio.instance().cargarDesdeArchivo());
-            model.setTableExpresiones(service.Servicio.instance().cargarDesdeArchivo());
+            List<Expresiones> result = service.Servicio.instance().cargarDesdeArchivo();
+            model.setExpresiones(result);
+            model.setTableExpresiones(result);
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
