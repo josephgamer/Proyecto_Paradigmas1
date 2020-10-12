@@ -27,7 +27,7 @@ public class DibujarTabla {
     public String devuelveVariablesPositivas() {
         String matriz = "";
         this.variablesPositivas
-                = new Boolean[(int) Math.pow(2, this.variablesPositive.size())][this.variablesPositive.size()];
+                = new Boolean[(int) Math.pow(2, 3)][3];
         int j = 0;
         int contador = 0;
         int dividendo = 2;
@@ -82,12 +82,12 @@ public class DibujarTabla {
             for (int i = 0; i < this.variablesNegativas.length; i++) {
                 if (mitadMatriz > 0) {
                     if (contador % 2 == 0) {
-                        this.variablesNegativas[i][j] = true;
+                        this.variablesNegativas[i][j] = false;
                         mitadMatriz--;
 
                     }
                     if (contador % 2 == 1) {
-                        this.variablesNegativas[i][j] = false;
+                        this.variablesNegativas[i][j] = true;
                         mitadMatriz--;
                     }
                 }
