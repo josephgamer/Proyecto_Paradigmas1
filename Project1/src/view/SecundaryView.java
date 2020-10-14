@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import logica.DibujarTabla;
 
 /**
@@ -163,9 +164,14 @@ public class SecundaryView extends javax.swing.JFrame {
         if (!this.jfexpresion.getText().isEmpty()) {
             d.addVariablesNegative(this.jfexpresion.getText());
             d.addVariablesPositive(this.jfexpresion.getText());
-            if (this.jtPositivo.getText().isEmpty() && this.jtnegativo.getText().isEmpty()) {
-                this.jtPositivo.append(d.devuelveVariablesPositivas());
-                this.jtnegativo.append(d.devuelveVariablesNegativas());
+            if (d.parentesisBalanceado(this.jfexpresion.getText())) {
+                if (this.jtPositivo.getText().isEmpty() && this.jtnegativo.getText().isEmpty()) {
+                    this.jtPositivo.append(d.devuelveVariablesPositivas());
+                    this.jtnegativo.append(d.devuelveVariablesNegativas());
+                }
+            } else {
+                Object[] mensaje = {"Parentesis no balanceados"};
+                JOptionPane.showMessageDialog(SecundaryView.this, mensaje, "Error", JOptionPane.OK_OPTION);
             }
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
