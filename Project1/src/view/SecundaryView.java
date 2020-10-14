@@ -164,6 +164,8 @@ public class SecundaryView extends javax.swing.JFrame {
         if (!this.jfexpresion.getText().isEmpty()) {
             d.addVariablesNegative(this.jfexpresion.getText());
             d.addVariablesPositive(this.jfexpresion.getText());
+            this.jlvariablespositivas.setText(d.returnVariablesPositive());
+            this.jlvariablesnegativas.setText(d.returnVaraiblesNegative());
             if (d.parentesisBalanceado(this.jfexpresion.getText())) {
                 if (this.jtPositivo.getText().isEmpty() && this.jtnegativo.getText().isEmpty()) {
                     this.jtPositivo.append(d.devuelveVariablesPositivas());
