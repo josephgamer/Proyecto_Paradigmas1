@@ -7,6 +7,8 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -27,7 +29,7 @@ public class DibujarTabla {
     public String devuelveVariablesPositivas() {
         String matriz = "";
         this.variablesPositivas
-                = new Boolean[(int) Math.pow(2, 3)][3];
+                = new Boolean[(int) Math.pow(2, this.variablesPositive.size())][this.variablesPositive.size()];
         int j = 0;
         int contador = 0;
         int dividendo = 2;
@@ -69,7 +71,7 @@ public class DibujarTabla {
         }
         return matriz;
     }
-    
+
     public String devuelveVariablesNegativas() {
         String matriz = "";
         this.variablesNegativas
@@ -115,6 +117,55 @@ public class DibujarTabla {
         return matriz;
     }
 
+    public boolean parentesisBalanceado(String expresion) {
+        int apertura = 0;
+        int cierre = 0;
+        if (expresion.indexOf("(") != -1) {
+            for (int i = 0; i < expresion.length(); i++) {
+                if (expresion.charAt(i) == '(') {
+                    apertura++;
+                }
+                if (expresion.charAt(i) == ')') {
+                    cierre++;
+                }
+            }
+        }
+        return apertura == cierre;
+    }
+    
+    public void addVariablesPositive(String expresion) {
+        String onlyVariables = expresion.replaceAll("[()˄˅↔→⌐]", "");
+        
+        if (!onlyVariables.isEmpty()) {
+            for (int i = 0; i< onlyVariables.length(); i++) {
+                String aux = Character.toString(onlyVariables.charAt(i));
+                if (!this.variablesPositive.contains(aux)) {
+                    this.variablesPositive.add(aux);
+                    aux = "";
+                }
+                aux = "";
+            }
+        }
+    }
+    
+    public void addVariablesNegative(String expresion) {
+        String onlyVariables = expresion.replaceAll("[()˄˅↔→⌐]", "");
+        String negativo = "";
+        if (!onlyVariables.isEmpty()) {
+            for (int i = 0; i < onlyVariables.length(); i++) {
+                String aux = Character.toString(onlyVariables.charAt(i));
+                negativo = negativo + "⌐" + aux;
+                if (!this.variablesNegative.contains(negativo)) {
+                    this.variablesNegative.add(negativo);
+                    aux = "";
+                    negativo = "";
+                }
+                aux = "";
+                negativo = "";
+            }
+        }
+    }
+
     public Boolean[][] getVariablesPositivas() {
         return variablesPositivas;
     }
@@ -146,7 +197,5 @@ public class DibujarTabla {
     public void setVariablesNegative(List<String> variablesNegative) {
         this.variablesNegative = variablesNegative;
     }
-    
-    
 
 }
