@@ -160,9 +160,13 @@ public class SecundaryView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluarActionPerformed
-        if (this.jtPositivo.getText().isEmpty() && this.jtnegativo.getText().isEmpty()) {
-            this.jtPositivo.append(d.devuelveVariablesPositivas());
-            this.jtnegativo.append(d.devuelveVariablesNegativas());
+        if (!this.jfexpresion.getText().isEmpty()) {
+            d.addVariablesNegative(this.jfexpresion.getText());
+            d.addVariablesPositive(this.jfexpresion.getText());
+            if (this.jtPositivo.getText().isEmpty() && this.jtnegativo.getText().isEmpty()) {
+                this.jtPositivo.append(d.devuelveVariablesPositivas());
+                this.jtnegativo.append(d.devuelveVariablesNegativas());
+            }
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
 
