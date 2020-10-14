@@ -165,6 +165,30 @@ public class DibujarTabla {
             }
         }
     }
+    
+    public String returnVariablesPositive() {
+        String result = "";
+        for (String aux : this.variablesPositive) {
+            if (result.isEmpty()) {
+                result = result + aux;
+            } else {
+                result = result + "\t" + aux;
+            }
+        }
+        return result;
+    }
+    
+    public String returnVaraiblesNegative() {
+        String result = "";
+        for (String aux : this.variablesNegative) {
+            if (result.isEmpty()) {
+                result = result + aux;
+            } else {
+                result = result + "\t" + aux;
+            }
+        }
+        return result;
+    }
 
     public Boolean[][] getVariablesPositivas() {
         return variablesPositivas;
