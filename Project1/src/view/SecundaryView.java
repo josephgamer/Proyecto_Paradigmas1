@@ -71,6 +71,7 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
         btnEvaluar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPositivo = new javax.swing.JTextArea();
         jlDescription1 = new javax.swing.JLabel();
@@ -99,6 +100,13 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
 
         btnEliminar.setText("Eliminar");
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,14 +115,16 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
                 .addGap(21, 21, 21)
                 .addComponent(jlexpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jfexpresion, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addComponent(jfexpresion)
                 .addGap(18, 18, 18)
                 .addComponent(btnEvaluar)
                 .addGap(18, 18, 18)
                 .addComponent(btnModificar)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminar)
-                .addGap(32, 32, 32))
+                .addGap(18, 18, 18)
+                .addComponent(btnVolver)
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +135,8 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
                     .addComponent(jfexpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEvaluar)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnVolver))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -166,7 +177,7 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
                         .addComponent(jlDescription2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlvariablesnegativas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +219,11 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
         }
     }//GEN-LAST:event_btnEvaluarActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        project1.Project1.LISTADO_EXPRESIONES.showPrincipal();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +263,7 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEvaluar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
