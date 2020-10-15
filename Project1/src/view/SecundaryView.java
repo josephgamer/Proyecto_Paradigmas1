@@ -5,16 +5,23 @@
  */
 package view;
 
+import controller.SecundaryController;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import logica.DibujarTabla;
+import logica.Expresiones;
+import logica.Model;
 
 /**
  *
  * @author Esteban
  */
-public class SecundaryView extends javax.swing.JFrame {
+public class SecundaryView extends javax.swing.JFrame implements Observer{
 
     DibujarTabla d = new DibujarTabla();
+    Model model = new Model();
+    SecundaryController controller = new SecundaryController();
 
     /**
      * Creates new form SecundaryView
@@ -25,6 +32,29 @@ public class SecundaryView extends javax.swing.JFrame {
         this.jtnegativo.setEditable(false);
         this.setLocationRelativeTo(null);
     }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+        model.addObserver(this);
+    }
+
+    public SecundaryController getController() {
+        return controller;
+    }
+
+    public void setController(SecundaryController controller) {
+        this.controller = controller;
+    }
+    
+    public void renderExpresion(Expresiones expresion) {
+        this.jfexpresion.setText(expresion.getExpresion());
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,7 +137,7 @@ public class SecundaryView extends javax.swing.JFrame {
 
         jlvariablespositivas.setText("hola");
 
-        jlDescription2.setText("Variables Positivas");
+        jlDescription2.setText("Variables Negativas");
 
         jlvariablesnegativas.setText("hola2");
 
@@ -229,4 +259,9 @@ public class SecundaryView extends javax.swing.JFrame {
     private javax.swing.JTextArea jtPositivo;
     private javax.swing.JTextArea jtnegativo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object o1) {
+        renderExpresion(model.getExpresion());
+    }
 }

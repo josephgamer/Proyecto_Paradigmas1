@@ -177,7 +177,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlDescription2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Variables Positivas"/>
+        <Property name="text" type="java.lang.String" value="Variables Negativas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlvariablesnegativas">
