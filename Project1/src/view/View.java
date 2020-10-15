@@ -73,6 +73,11 @@ public class View extends javax.swing.JFrame implements Observer{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        expresions.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                expresionsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(expresions);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
@@ -132,6 +137,14 @@ public class View extends javax.swing.JFrame implements Observer{
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         controller.cargarDatos();
     }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void expresionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expresionsMouseClicked
+        if (evt.getClickCount() == 2) {
+            controller.row(this.expresions.getSelectedRow());
+            project1.Project1.SECUNDARY_CONTROLLER.secundaryView();
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_expresionsMouseClicked
 
     /**
      * @param args the command line arguments
