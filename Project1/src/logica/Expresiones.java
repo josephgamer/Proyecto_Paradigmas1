@@ -17,6 +17,7 @@ public class Expresiones {
     }
 
     public Expresiones() {
+        this.expresion = "";
     }
 
     public String getExpresion() {
