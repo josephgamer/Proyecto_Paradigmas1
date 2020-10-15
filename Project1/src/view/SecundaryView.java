@@ -54,6 +54,13 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
         this.jfexpresion.setText(expresion.getExpresion());
     }
     
+    public void clean() {
+        this.jlvariablesnegativas.setText("");
+        this.jlvariablespositivas.setText("");
+        this.jtPositivo.setText("");
+        this.jtnegativo.setText("");
+    }
+    
     
 
     /**
@@ -222,6 +229,8 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.setVisible(false);
         project1.Project1.LISTADO_EXPRESIONES.showPrincipal();
+        d.reiniciarArreglos();
+        clean();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
