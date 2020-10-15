@@ -189,6 +189,15 @@ public class DibujarTabla {
         }
         return result;
     }
+    
+    public void reiniciarArreglos() {
+        this.variablesNegative = null;
+        this.variablesPositive = null;
+        this.variablesNegativas = null;
+        this.variablesPositivas = null;
+        this.variablesNegative = new ArrayList<>();
+        this.variablesPositive = new ArrayList<>();
+    }
 
     public Boolean[][] getVariablesPositivas() {
         return variablesPositivas;
