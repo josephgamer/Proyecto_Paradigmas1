@@ -42,4 +42,8 @@ public class Controller {
     public void showPrincipal() {
         this.view.setVisible(true);
     }
+    
+    public void row(int row) {
+        project1.Project1.SECUNDARY_CONTROLLER.setExpresion(model.getExpresiones().get(row));
+    }
 }
