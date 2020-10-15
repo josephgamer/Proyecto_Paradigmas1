@@ -38,4 +38,8 @@ public class Controller {
         }
 
     }
+    
+    public void showPrincipal() {
+        this.view.setVisible(true);
+    }
 }
