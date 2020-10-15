@@ -49,6 +49,15 @@ public class Servicio {
         this.expresiones.remove(position);
     }
     
+    public Expresiones returnExpresion(Expresiones expresion) {
+        for (Expresiones result : this.expresiones) {
+            if (result.getExpresion().equals(expresion.getExpresion())) {
+                return result;
+            }
+        }
+        return null;
+    }
+    
     static Servicio the_instance;
     public static Servicio instance(){
         if(the_instance == null){
