@@ -7,8 +7,15 @@ package view;
 
 import controller.Controller;
 import controller.ModelTable;
+import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import logica.Model;
 
 /**
@@ -59,6 +66,7 @@ public class View extends javax.swing.JFrame implements Observer{
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +99,13 @@ public class View extends javax.swing.JFrame implements Observer{
             }
         });
 
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,16 +113,20 @@ public class View extends javax.swing.JFrame implements Observer{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(155, 155, 155)
                 .addComponent(btnCargar)
-                .addGap(84, 84, 84))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(37, 37, 37))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCargar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCargar)
+                        .addComponent(btnGuardar))
                     .addComponent(jLabel1))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
@@ -135,7 +154,15 @@ public class View extends javax.swing.JFrame implements Observer{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        controller.cargarDatos();
+        JFileChooser open = new JFileChooser();
+        open.showOpenDialog(this);
+        String patch = "";
+        if (open.getSelectedFile().getAbsolutePath() != null) {
+            patch = open.getSelectedFile().getAbsolutePath();
+        }
+        if (!patch.isEmpty()) {
+            controller.cargarDatos(patch);
+        }
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void expresionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expresionsMouseClicked
@@ -145,6 +172,20 @@ public class View extends javax.swing.JFrame implements Observer{
             this.setVisible(false);
         }
     }//GEN-LAST:event_expresionsMouseClicked
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        JFileChooser save = new JFileChooser();
+        File file = null;
+        if (save.showDialog(this, "Guardar") == JFileChooser.APPROVE_OPTION) {
+            file = save.getSelectedFile();
+            controller.guardarArchivo(file);
+            if (!file.getName().endsWith("txt")) {
+                Object[] mensaje = {"Error de archivo"};
+                JOptionPane.showMessageDialog(View.this, mensaje, "Error", JOptionPane.OK_OPTION);
+            }
+            
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +224,7 @@ public class View extends javax.swing.JFrame implements Observer{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JTable expresions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
