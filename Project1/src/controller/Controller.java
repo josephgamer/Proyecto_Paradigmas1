@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,15 +29,23 @@ public class Controller {
         view.setController(this);
     }
     
-    public void cargarDatos() {
+    public void cargarDatos(String archivo) {
         try {
-            List<Expresiones> result = service.Servicio.instance().cargarDesdeArchivo();
+            List<Expresiones> result = service.Servicio.instance().cargarDesdeArchivo(archivo);
             model.setExpresiones(result);
             model.setTableExpresiones(result);
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    public void guardarArchivo(File archivo) {
+        try {
+            service.Servicio.instance().guardarArchivo(archivo);
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void showPrincipal() {
