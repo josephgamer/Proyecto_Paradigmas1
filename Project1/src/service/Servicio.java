@@ -73,6 +73,10 @@ public class Servicio {
         }
         return null;
     }
+
+    public List<Expresiones> getExpresiones() {
+        return expresiones;
+    }
     
     static Servicio the_instance;
     public static Servicio instance(){
