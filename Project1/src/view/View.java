@@ -16,6 +16,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import logica.DibujarTabla;
+import logica.Expresiones;
 import logica.Model;
 
 /**
@@ -26,6 +28,7 @@ public class View extends javax.swing.JFrame implements Observer{
     
     ModelTable model;
     Controller controller;
+    DibujarTabla d = new DibujarTabla();
 
     public ModelTable getModel() {
         return model;
@@ -79,6 +82,7 @@ public class View extends javax.swing.JFrame implements Observer{
         btlDoble = new javax.swing.JButton();
         btnNegar = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,6 +166,13 @@ public class View extends javax.swing.JFrame implements Observer{
             }
         });
 
+        btnAdd.setText("Añadir expresion");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,7 +193,9 @@ public class View extends javax.swing.JFrame implements Observer{
                         .addGap(28, 28, 28)
                         .addComponent(jtfExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
+                        .addGap(21, 21, 21)
+                        .addComponent(btnAdd)
+                        .addGap(106, 106, 106)
                         .addComponent(btnAnd)
                         .addGap(18, 18, 18)
                         .addComponent(btnOr)
@@ -194,7 +207,7 @@ public class View extends javax.swing.JFrame implements Observer{
                         .addComponent(btnNegar)
                         .addGap(35, 35, 35)
                         .addComponent(btnClear)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +229,8 @@ public class View extends javax.swing.JFrame implements Observer{
                     .addComponent(btnImplica)
                     .addComponent(btlDoble)
                     .addComponent(btnNegar)
-                    .addComponent(btnClear))
+                    .addComponent(btnClear)
+                    .addComponent(btnAdd))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -226,7 +240,7 @@ public class View extends javax.swing.JFrame implements Observer{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
@@ -300,6 +314,15 @@ public class View extends javax.swing.JFrame implements Observer{
         limpiar();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if (!this.jtfExpresion.getText().isEmpty()) {
+            if (d.parentesisBalanceado(this.jtfExpresion.getText())) {
+                controller.addExpresion(new Expresiones(this.jtfExpresion.getText()));
+                controller.refrescarPantalla();
+            }
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,6 +360,7 @@ public class View extends javax.swing.JFrame implements Observer{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btlDoble;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAnd;
     private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnClear;
