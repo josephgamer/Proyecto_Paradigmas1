@@ -51,6 +51,10 @@ public class View extends javax.swing.JFrame implements Observer{
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    public void limpiar() {
+        this.jtfExpresion.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,9 +68,17 @@ public class View extends javax.swing.JFrame implements Observer{
         jScrollPane1 = new javax.swing.JScrollPane();
         expresions = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlinfo1 = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jlinfo2 = new javax.swing.JLabel();
+        jtfExpresion = new javax.swing.JTextField();
+        btnAnd = new javax.swing.JButton();
+        btnOr = new javax.swing.JButton();
+        btnImplica = new javax.swing.JButton();
+        btlDoble = new javax.swing.JButton();
+        btnNegar = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,7 +102,7 @@ public class View extends javax.swing.JFrame implements Observer{
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
-        jLabel1.setText("Dar click sobre la expresion para verificarla");
+        jlinfo1.setText("Dar click sobre la expresion para verificarla");
 
         btnCargar.setText("Cargar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,18 +118,83 @@ public class View extends javax.swing.JFrame implements Observer{
             }
         });
 
+        jlinfo2.setText("Añadir nueva expresión");
+
+        btnAnd.setText("˄");
+        btnAnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAndActionPerformed(evt);
+            }
+        });
+
+        btnOr.setText("˅");
+        btnOr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrActionPerformed(evt);
+            }
+        });
+
+        btnImplica.setText("→");
+        btnImplica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImplicaActionPerformed(evt);
+            }
+        });
+
+        btlDoble.setText("↔ ");
+        btlDoble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btlDobleActionPerformed(evt);
+            }
+        });
+
+        btnNegar.setText("⌐");
+        btnNegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNegarActionPerformed(evt);
+            }
+        });
+
+        btnClear.setText("Limpiar");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155)
-                .addComponent(btnCargar)
+                .addComponent(jlinfo1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCargar)
+                .addGap(18, 18, 18)
                 .addComponent(btnGuardar)
-                .addGap(37, 37, 37))
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jlinfo2)
+                        .addGap(28, 28, 28)
+                        .addComponent(jtfExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addComponent(btnAnd)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOr)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnImplica)
+                        .addGap(18, 18, 18)
+                        .addComponent(btlDoble)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNegar)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnClear)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,27 +204,39 @@ public class View extends javax.swing.JFrame implements Observer{
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCargar)
                         .addComponent(btnGuardar))
-                    .addComponent(jLabel1))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jlinfo1))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlinfo2)
+                    .addComponent(jtfExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnd)
+                    .addComponent(btnOr)
+                    .addComponent(btnImplica)
+                    .addComponent(btlDoble)
+                    .addComponent(btnNegar)
+                    .addComponent(btnClear))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -187,6 +276,30 @@ public class View extends javax.swing.JFrame implements Observer{
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnAndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndActionPerformed
+        this.jtfExpresion.setText(this.jtfExpresion.getText() + "˄");
+    }//GEN-LAST:event_btnAndActionPerformed
+
+    private void btnOrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrActionPerformed
+        this.jtfExpresion.setText(this.jtfExpresion.getText() + "˅");
+    }//GEN-LAST:event_btnOrActionPerformed
+
+    private void btnImplicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImplicaActionPerformed
+        this.jtfExpresion.setText(this.jtfExpresion.getText() + "→");
+    }//GEN-LAST:event_btnImplicaActionPerformed
+
+    private void btlDobleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlDobleActionPerformed
+        this.jtfExpresion.setText(this.jtfExpresion.getText() + "↔");
+    }//GEN-LAST:event_btlDobleActionPerformed
+
+    private void btnNegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegarActionPerformed
+        this.jtfExpresion.setText(this.jtfExpresion.getText() + "⌐");
+    }//GEN-LAST:event_btnNegarActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnClearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,12 +336,20 @@ public class View extends javax.swing.JFrame implements Observer{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btlDoble;
+    private javax.swing.JButton btnAnd;
     private javax.swing.JButton btnCargar;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnImplica;
+    private javax.swing.JButton btnNegar;
+    private javax.swing.JButton btnOr;
     private javax.swing.JTable expresions;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlinfo1;
+    private javax.swing.JLabel jlinfo2;
+    private javax.swing.JTextField jtfExpresion;
     // End of variables declaration//GEN-END:variables
 
     @Override
