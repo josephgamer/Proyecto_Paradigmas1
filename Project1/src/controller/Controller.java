@@ -48,6 +48,16 @@ public class Controller {
         }
     }
     
+    public void addExpresion(Expresiones expresion) {
+        service.Servicio.instance().addExpression(expresion);
+    }
+    
+    public void refrescarPantalla() {
+        List<Expresiones> pantalla = service.Servicio.instance().getExpresiones();
+        model.setExpresiones(pantalla);
+        model.setTableExpresiones(pantalla);
+    }
+    
     public void showPrincipal() {
         this.view.setVisible(true);
     }
