@@ -58,6 +58,10 @@ public class View extends javax.swing.JFrame implements Observer{
     public void limpiar() {
         this.jtfExpresion.setText("");
     }
+    
+    public int returnNumExpresion() {
+        return this.expresions.getSelectedRow();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -321,6 +325,7 @@ public class View extends javax.swing.JFrame implements Observer{
                 controller.refrescarPantalla();
             }
         }
+        limpiar();
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**
