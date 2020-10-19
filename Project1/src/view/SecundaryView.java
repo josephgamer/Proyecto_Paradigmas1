@@ -17,7 +17,7 @@ import logica.Model;
  *
  * @author Esteban
  */
-public class SecundaryView extends javax.swing.JFrame implements Observer{
+public class SecundaryView extends javax.swing.JFrame implements Observer {
 
     DibujarTabla d = new DibujarTabla();
     Model model = new Model();
@@ -49,19 +49,17 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
     public void setController(SecundaryController controller) {
         this.controller = controller;
     }
-    
+
     public void renderExpresion(Expresiones expresion) {
         this.jfexpresion.setText(expresion.getExpresion());
     }
-    
+
     public void clean() {
         this.jlvariablesnegativas.setText("");
         this.jlvariablespositivas.setText("");
         this.jtPositivo.setText("");
         this.jtnegativo.setText("");
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,8 +107,18 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -311,6 +319,25 @@ public class SecundaryView extends javax.swing.JFrame implements Observer{
     private void btnNegacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegacionActionPerformed
         this.jfexpresion.setText(this.jfexpresion.getText() + "⌐");
     }//GEN-LAST:event_btnNegacionActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        controller.updateExpresion(controller.returnNumExpresion(),
+                new Expresiones(this.jfexpresion.getText()));
+        controller.refrescarPantallaPrincipal();
+        this.setVisible(false);
+        project1.Project1.LISTADO_EXPRESIONES.showPrincipal();
+        d.reiniciarArreglos();
+        clean();
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        controller.deleteExpresion(controller.returnNumExpresion());
+        this.setVisible(false);
+        controller.refrescarPantallaPrincipal();
+        project1.Project1.LISTADO_EXPRESIONES.showPrincipal();
+        d.reiniciarArreglos();
+        clean();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
