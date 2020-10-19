@@ -33,4 +33,20 @@ public class SecundaryController {
     public void secundaryView() {
         this.view.setVisible(true);
     }
+    
+    public int returnNumExpresion() {
+        return project1.Project1.LISTADO_EXPRESIONES.returnNumExpresion();
+    }
+    
+    public void deleteExpresion(int pos) {
+        service.Servicio.instance().deleteEsxpression(pos);
+    }
+    
+    public void updateExpresion(int position, Expresiones expresion) {
+        service.Servicio.instance().updateExpression(position, expresion);
+    }
+    
+    public void refrescarPantallaPrincipal() {
+        project1.Project1.LISTADO_EXPRESIONES.refrescarPantalla();
+    }
 }
